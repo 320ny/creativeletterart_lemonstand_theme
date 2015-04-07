@@ -6,4 +6,28 @@ name: 'Create'
 url: /create
 ---
 
-Create Letter Art!!!
+{% set customCollection = 'custom-art'|collection %}
+{% set customProducts = customCollection.products %}
+
+{% for product in customProducts %}
+  <div class="container">
+    <div class="row">
+      {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
+        {{ code_block('create-controlls', {'product': product}) }}
+      {{ close_form() }}
+    </div>
+  </div>
+{% endfor %}
+
+<div class="row">
+  <div clas="span8">
+    Show letetrs here
+  </div>
+</div>
+
+
+<style>
+  .main {
+    background-color: #ffffff;
+  }
+</style>

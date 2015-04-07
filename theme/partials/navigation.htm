@@ -22,6 +22,7 @@
                                 {% endtree %}
                                 {% endif %}
                             </li>
+                            <li class="{{ active_page == 'create' ? 'active' : null }}"><a href="{{ site_url('create') }}">Create</a></li>
                             <li class="{{ active_page == 'about-us' ? 'active' : null }}"><a href="{{ site_url('about-us') }}">About</a></li>
                             <li class="{{ active_page == 'contact-us' ? 'active' : null }}"><a href="{{ site_url('contact-us') }}">Contact Us</a></li>
                         </ul>
