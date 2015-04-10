@@ -12,18 +12,32 @@ url: /create
 {% for product in customProducts %}
   <div class="container">
     <div class="row">
+      <div class="span8">
+        {{product.name}}
+      </div>
+    </div>
+    <div class="row">
       {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
         {{ code_block('create-controlls', {'product': product}) }}
+
+        <div id="price-{{product.id}}">
+            {{ partial('create-price', {'product': product}) }}
+        </div>
+
+        <input type="hidden" name="productId" value="{{ product.id }}"/>
+        <a href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">Add to Cart</a>
       {{ close_form() }}
     </div>
   </div>
 {% endfor %}
 
 <div class="row">
-  <div clas="span8">
+  <div class="span8">
     Show letetrs here
   </div>
 </div>
+
+<div id="added"></div>
 
 
 <style>

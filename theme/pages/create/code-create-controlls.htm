@@ -1,7 +1,4 @@
-
-
 <div class="span2">
-  {{product.name}}
   <label>Theme</label>
   <select ng-model="$parent.$parent.themeService.selectedTheme" class="span2">
 		<option value="default">Default</option>
@@ -23,37 +20,13 @@
   </select>
 </div>
 
-<div class="span2">
-  <label>Frame Choice</label>
-  <select name="product_extra_options[group_1]" class="span2">
-   	       	<option value="45b9730559688a1b0c89d096221e0dfc" data-price="0.00">
-      	  No Frame/4x6 Pictures Only/No Matting      	</option>
-    	      	<option value="6f390a5d5dc5b2f75e270cee62e1806f" data-price="14.95">
-      	  Black 8x20 inch Framed Print      	</option>
-    	      	<option value="500680c50e010be97520ae164a492257" data-price="24.95">
-      	  White Frame 8x20 Framed Print      	</option>
-    	      	<option value="1beb261ea40fa9265d193aa7d322d883" data-price="24.95">
-      	  Driftwood Frame 8x20 Framed Print      	</option>
-    	      	<option value="c43e4ff5d8a93f34fa4b89b8a6aba3f0" data-price="24.95">
-      	  Mahogany Frame 8x20 Framed Print      	</option>
-    	      	<option value="820504f0dc8067d435d9a19eaa0fa01f" data-price="94.00">
-      	  Upgrade Modern Black 12x38      	</option>
-    	      	<option value="3bba20f0ca8945df32e7df587f482e60" data-price="104.00">
-      	  Upgrade White Frame 12x38      	</option>
-    	      	<option value="d237c55e6665f8bf6e07ea49a0773702" data-price="104.00">
-      	  Upgrade Driftwood Gray 12x38      	</option>
-    	      	<option value="46cf132f0290789f16decc63c5e21a02" data-price="104.00">
-      	  Upgrade Mahogany w/ Black Trim 12x38      	</option>
-  </select>
-</div>
-
-<div class="span2">
-  <label>Mat Choice</label>
-  <select name="product_extra_options[group_2]" class="span2">
-   	       	<option value="9919c1fabf6f10edc157bd1ad7c552b1" data-price="0.00">
-      	  White Background/ Upgrade Matting      	</option>
-    	      	<option value="eaaa9454cc15deaf18f19edfc528b481" data-price="0.00">
-      	  Black Background/ Upgrade Matting      	</option>
-    	  	</select>
-  </select>
-</div>
+{% for index, option in product.options %}
+  <div class="span2">
+    <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
+      <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="span2" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
+        {% for key, value in option.values %}
+            <option value='{{ key }}' {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
+        {% endfor %}
+      </select>
+  </div>
+{% endfor %}
