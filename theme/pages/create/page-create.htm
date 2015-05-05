@@ -5,6 +5,19 @@ published: true
 name: 'Create'
 url: /create
 ---
+<!-- Load Angular -->
+<script src="https://code.angularjs.org/1.2.24/angular.min.js"></script>
+<script src="https://code.angularjs.org/1.2.24/angular-route.min.js"></script>
+<!-- Load CreateApp -->
+<script type="text/javascript" src="{{ 'javascript/create/CreateApp.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/CreateController.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/ThemeService.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/ProductService.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/Character.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/directives/createWordInput.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/directives/editWordInput.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/directives/createProductForm.js'|theme_resource }}"></script>
+
 
 {% set customCollection = 'custom-art'|collection %}
 {% set customProducts = customCollection.products %}
@@ -19,6 +32,7 @@ url: /create
     <div class="row">
       {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
         {{ code_block('create-controlls', {'product': product}) }}
+        {{ code_block('create-letter-inputs', {'product': product}) }}
 
         <div id="price-{{product.id}}">
             {{ partial('create-price', {'product': product}) }}
