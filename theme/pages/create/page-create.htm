@@ -18,44 +18,55 @@ url: /create
 <script type="text/javascript" src="{{ 'javascript/create/directives/editWordInput.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/create/directives/createProductForm.js'|theme_resource }}"></script>
 
+<div class="container" ng-app="CreateApp" ng-controller="CreateController">
 
-{% set customCollection = 'custom-art'|collection %}
-{% set customProducts = customCollection.products %}
+  {% set customCollection = 'custom_art'|collection %}
+  {% for product in customCollection.products %}
+    {% set characters = 0 %}
 
-{% for product in customProducts %}
-  <div class="container">
-    <div class="row">
+    {% for attribute in product.productAttributes %}
+      {% if attribute.name == 'Character Count' %}
+        {% set characters = attribute.value %}
+      {% endif %}
+    {% endfor %}
+
+    <div class="row" ng-show="word.length == '{{characters}}'">
       <div class="span8">
         {{product.name}}
       </div>
     </div>
-    <div class="row">
+    <div class="row" ng-show="word.length == '{{characters}}'">
       {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
         {{ code_block('create-controlls', {'product': product}) }}
         {{ code_block('create-letter-inputs', {'product': product}) }}
 
         <div id="price-{{product.id}}">
-            {{ partial('create-price', {'product': product}) }}
+          {{ partial('create-price', {'product': product}) }}
         </div>
 
         <input type="hidden" name="productId" value="{{ product.id }}"/>
         <a href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">Add to Cart</a>
       {{ close_form() }}
     </div>
-  </div>
-{% endfor %}
+  {% endfor %}
 
-<div class="row">
-  <div class="span8">
-    Show letetrs here
+  <div class="row">
+    <div class="span8">
+      <div edit-word-input create-word="word"></div>
+    </div>
   </div>
+
+  {{ code_block('framed-photos') }}
+  {{ code_block('modals') }}
+
+  <div id="added"></div>
+
+
+  <style>
+    .main {
+      background-color: #ffffff;
+    }
+  </style>
+
+  <div ng-repeat="character in characters" ng-show="character.modalState == 'open'" ng-click="character.modal('close')" class="modal-backdrop"></div>
 </div>
-
-<div id="added"></div>
-
-
-<style>
-  .main {
-    background-color: #ffffff;
-  }
-</style>

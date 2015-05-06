@@ -1,0 +1,20 @@
+{% raw %}
+  <div class="row">
+    <div class="span8">
+      <div id="create_section">
+        <div id="create-mating">
+          <div id="create">
+            <a ng-cloak ng-repeat="character in characters" ng-click="character.modal('open')" href="">
+              <img ng-if="!character.isSpace()" ng-src='{{character.image_url()}}' width='80'/>
+              <img ng-if="character.isSpace()" src="/resources/images/space.jpg" width="80" style="background-color: rgb(0, 0, 0);">
+            </a>
+          </div>
+          <div id="letter_links">
+            <a ng-cloak ng-repeat-start="character in characters" ng-hide="character.isSpace()" ng-click="character.modal('open')" href="">change letter</a>
+            <span ng-repeat-end ng-show="character.isSpace()" class="space_image"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endraw %}

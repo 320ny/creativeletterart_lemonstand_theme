@@ -1,14 +1,6 @@
-{% set characters = 0 %}
-
-{% for attribute in product.productAttributes %}
-  {{ attribute.name }}
-  {% if attribute.name == 'Character Count' %}
-    {% set characters = attribute.value %}
-  {% endif %}
-{% endfor %}
-
-{{characters}}
-
-{% for num in range(1, characters) %}
-  <input type="text" name="character_{{num}}">
-{% endfor %}
+<div ng-show="false" ng-repeat="character in characters">
+  {% raw %}
+    Character Count {{character.id}}
+    <input type="text" name="character_{{character.id}}" value="{{character.fullName()}}">
+  {% endraw %}
+</div>

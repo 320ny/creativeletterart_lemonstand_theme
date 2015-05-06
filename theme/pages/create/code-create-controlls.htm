@@ -1,32 +1,34 @@
-<div class="span2">
-  <label>Theme</label>
-  <select ng-model="$parent.$parent.themeService.selectedTheme" class="span2">
-		<option value="default">Default</option>
-		<option value="architecture">Architecture</option>
-		<option value="industrial">Industrial</option>
-		<option value="music">Music</option>
-		<option value="nature">Nature</option>
-		<option value="nautical">Nautical</option>
-		<option value="neon">Neon</option>
-  </select>
-</div>
-
-<div class="span2">
-  <label>Photo Choice </label>
-  <select ng-model="$parent.$parent.product.photo" name="photo_color" class="span2">
-			<option value="color">Color</option>
-			<option value="sepia">Sepia</option>
-			<option value="bw">Black &amp; White</option>
-  </select>
-</div>
-
-{% for index, option in product.options %}
+<div>
   <div class="span2">
-    <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
-      <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="span2" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
-        {% for key, value in option.values %}
-            <option value='{{ key }}' {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
-        {% endfor %}
-      </select>
+    <label>Theme</label>
+    <select ng-model="themeService.selectedTheme" class="span2">
+  		<option value="default">Default</option>
+  		<option value="architecture">Architecture</option>
+  		<option value="industrial">Industrial</option>
+  		<option value="music">Music</option>
+  		<option value="nature">Nature</option>
+  		<option value="nautical">Nautical</option>
+  		<option value="neon">Neon</option>
+    </select>
   </div>
-{% endfor %}
+
+  <div class="span2">
+    <label>Photo Choice </label>
+    <select ng-model="product.photo" name="photo_color" class="span2">
+  			<option value="color">Color</option>
+  			<option value="sepia">Sepia</option>
+  			<option value="bw">Black &amp; White</option>
+    </select>
+  </div>
+
+  {% for index, option in product.options %}
+    <div class="span2">
+      <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
+      <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="span2" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
+          {% for key, value in option.values %}
+              <option value='{{ key }}' {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  {% endfor %}
+</div>

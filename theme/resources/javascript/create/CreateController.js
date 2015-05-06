@@ -3,7 +3,6 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   * INITIAL VALUES
   */
   $scope.word = $location.search().word || '';
-  $scope.state = $location.search().state || 'start'; // States = ['start', 'configure']
   $scope.characters = [];
 
   $scope.themeService = ThemeService;
@@ -13,7 +12,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   * WORD
   */
   $scope.$watch("word", function(newValue, oldValue) {
-    if ((newValue != oldValue) && ($scope.state == 'configure')) {
+    if (newValue != oldValue) {
     	$scope.geterateCharacters();
     }
   }, true);
@@ -52,7 +51,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.geterateCharacters = function () {
   	$scope.characters = [];
     angular.forEach($scope.word, function(value, key) {
-       this.characters.push(new Character({id: key, name: value}));
+       this.characters.push(new Character({id: key + 1, name: value}));
      }, $scope);
   }
 
@@ -71,16 +70,12 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
     $scope.state = 'configure';
   };
 
-  $scope.stateToStart = function () {
-  	$scope.state = 'start';
-  };
 
   /*
   * LOAD
   */
   this.load = function () {
-    if ($scope.state == 'configure')
-  	  $scope.stateToConfigure();
+    $scope.geterateCharacters();
   	ThemeService.getCodes();
   	if ($location.search().theme) {
   		$scope.themeService.selectedTheme = $location.search().theme.toLowerCase();
