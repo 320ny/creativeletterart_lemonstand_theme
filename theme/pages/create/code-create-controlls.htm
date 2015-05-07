@@ -24,7 +24,7 @@
   {% for index, option in product.options %}
     <div class="span2">
       <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
-      <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="span2" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
+      <select {% if option.name == 'Frame Choice' %}ng-model="selectedFrame"  ng-change="frameService.updateFrame(selectedFrame, word.length)"{% endif %} id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="span2" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
           {% for key, value in option.values %}
               <option value='{{ key }}' {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
           {% endfor %}

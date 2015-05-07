@@ -1,4 +1,4 @@
-CreateApp.controller('CreateController', function($scope, $location, Character, ThemeService, ProductService, Library) {
+CreateApp.controller('CreateController', function($scope, $location, Character, ThemeService, ProductService, Library, FrameService) {
   /*
   * INITIAL VALUES
   */
@@ -6,6 +6,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.characters = [];
 
   $scope.themeService = ThemeService;
+  $scope.frameService = FrameService;
   $scope.product = ProductService;
   $scope.library = Library;
 
@@ -27,6 +28,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   		  value.photo = newValue;
   		});
   	}
+    console.log("Photo changed to "+newValue)
   }, true);
 
   /*
@@ -36,13 +38,13 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   	if (newValue != oldValue) {
   		$scope.changeTheme(newValue);
   	}
+    console.log("Theme changed to "+newValue)
   }, true);
 
   $scope.changeTheme = function (newTheme) {
   	angular.forEach($scope.characters, function(value, key) {
   		value.code = ThemeService.findThemeCode(newTheme, value.name);
   	});
-  	console.log("changing theme");
   };
 
 
@@ -54,34 +56,19 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
     angular.forEach($scope.word, function(value, key) {
        this.characters.push(new Character({id: key + 1, name: value}));
      }, $scope);
-  }
-
-  /*
-  * STATE
-  */
-  $scope.stateToConfigure = function () {
-  	$scope.geterateCharacters();
-  	// Set styles on create section
-  	$('#create_section').css('background-image', 'url("/resources/images/modernblack_' + $scope.word.length +'.png")');
-  	var width = $scope.word.length * 103 + (10 - $scope.word.length) * 13;
-	$('#create_section').css({'width': width + 'px', 'height': '282px'});
-	$('#create').css('width', 'auto');
-	// Update select dropdown
-
-    $scope.state = 'configure';
   };
-
 
   /*
   * LOAD
   */
   this.load = function () {
-    $scope.geterateCharacters();
-  	Library.loadAllCharacters();
-  	if ($location.search().theme) {
-  		$scope.themeService.selectedTheme = $location.search().theme.toLowerCase();
-  		$scope.changeTheme($scope.themeService.selectedTheme);
-  	}
+  	Library.loadAllCharacters().then(function() {
+      $scope.geterateCharacters();
+      if ($location.search().theme) {
+    		$scope.themeService.selectedTheme = $location.search().theme.toLowerCase();
+    		$scope.changeTheme($scope.themeService.selectedTheme);
+    	}
+    });
   };
 
   this.load();

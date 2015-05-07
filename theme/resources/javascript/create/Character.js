@@ -30,7 +30,7 @@ CreateApp.factory('Character', function (ThemeService, Library) {
   		if (this.isSymbol())
   			return '/resources/images/letters/symbols/_symbol-' + this.code + this.photoCode() + '.jpg';
   		else
-  			return letter[this.photo + '_thumb']
+  		  return letter ? letter[this.photo + '_thumb'] : undefined;
   	};
 
 

@@ -15,10 +15,16 @@ CreateApp.service('Library',function ($http, $q) {
   };
 
   this.loadAllCharacters = function() {
-    var letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+    var deferred = $q.defer();
+    var letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y'];
     angular.forEach(letters, function(c) {
       this.getCharacterData(c);
     }, this);
+    this.getCharacterData('Z').
+      then(function() {
+        deferred.resolve();
+      });
+    return deferred.promise;
   };
 
   // private
@@ -27,7 +33,7 @@ CreateApp.service('Library',function ($http, $q) {
 
   this.getCharacterData = function(character) {
     var _this = this;
-    $http.jsonp("http://commandcenter.creativeletterart.net/api/letters/"+ character +"/list?callback=JSON_CALLBACK").
+    return $http.jsonp("http://commandcenter.creativeletterart.net/api/letters/"+ character +"/list?callback=JSON_CALLBACK").
       success(function(data) {
         _this.data[character] = data;
       });
