@@ -1,4 +1,4 @@
-CreateApp.factory('Character', function (ThemeService) {
+CreateApp.factory('Character', function (ThemeService, Library) {
   var Character = function(attributes) {
   	this.id = attributes.id;
   	this.name = attributes.name;
@@ -12,20 +12,29 @@ CreateApp.factory('Character', function (ThemeService) {
   		return photo;
   	};
   	this.code = attributes.code || ThemeService.findThemeCode('default', this.name);
+
+    // Modal Functions
   	this.modalState = 'close';
+    this.modal = function (action) {
+      this.modalState = action;
+    };
+    this.applyCodeAndPhoto = function (code, photo) {
+      this.code = code;
+      this.photo = photo;
+      this.modalState = 'close';
+    }
+
   	this.image_url = function() {
   		var name = this.name.toLocaleUpperCase();
+      var letter = Library.findByCode(name, this.code);
   		if (this.isSymbol())
   			return '/resources/images/letters/symbols/_symbol-' + this.code + this.photoCode() + '.jpg';
   		else
-  			return '/resources/images/letters/' + name + '/' + name + '-' + this.code + this.photoCode() + '.jpg';
+  			return letter[this.photo + '_thumb']
   	};
-  	this.modal = function (action) {
-  		this.modalState = action;
-  	};
-  	this.codes = function () {
-  		return ThemeService.findCodes(this.name.toUpperCase());
-  	};
+
+
+
   	this.codePhotoImageUrl = function (code, photo) {
   		var name = this.name.toLocaleUpperCase();
   		if (this.isSymbol())
@@ -33,11 +42,7 @@ CreateApp.factory('Character', function (ThemeService) {
   		else
   			return '/resources/images/letters/' + name + '/' + name + '-' + code + photo + '.jpg';
   	};
-  	this.applyCodeAndPhoto = function (code, photo) {
-  		this.code = code;
-  		this.photo = photo;
-  		this.modalState = 'close';
-  	}
+
   	this.isSymbol = function () {
   		return (this.name == '!' || this.name == '&');
   	};
@@ -50,7 +55,7 @@ CreateApp.factory('Character', function (ThemeService) {
   		else if (this.isSymbol())
   			return '_symbol' + '-' + this.code + this.photoCode();
   		else
-  			return this.name.toUpperCase() + '-' + this.code + this.photoCode();
+  			return this.code + this.photoCode();
   	};
   }
   return Character;

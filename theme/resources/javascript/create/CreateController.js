@@ -1,4 +1,4 @@
-CreateApp.controller('CreateController', function($scope, $location, Character, ThemeService, ProductService) {
+CreateApp.controller('CreateController', function($scope, $location, Character, ThemeService, ProductService, Library) {
   /*
   * INITIAL VALUES
   */
@@ -7,6 +7,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
 
   $scope.themeService = ThemeService;
   $scope.product = ProductService;
+  $scope.library = Library;
 
   /*
   * WORD
@@ -76,7 +77,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   */
   this.load = function () {
     $scope.geterateCharacters();
-  	ThemeService.getCodes();
+  	Library.loadAllCharacters();
   	if ($location.search().theme) {
   		$scope.themeService.selectedTheme = $location.search().theme.toLowerCase();
   		$scope.changeTheme($scope.themeService.selectedTheme);

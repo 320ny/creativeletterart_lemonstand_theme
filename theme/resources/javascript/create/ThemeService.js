@@ -1,18 +1,20 @@
 CreateApp.service('ThemeService', function ($http) {
 	this.selectedTheme = 'default';
 	this.findThemeCode = function (theme, character) {
-		return this.themes[theme][character.toUpperCase()];
+		var character = character.toUpperCase()
+		return character + '-' + this.themes[theme][character];
 	};
 	this.themes = {
 		  default: {
-			'A': '200','B': '204','C': '200','D': '207','E': '206',
+			//'A': '200','B': '204','C': '200','D': '207','E': '206',
+			'A': '100','B': '204','C': '200','D': '207','E': '206',
 	 		'F': '202','G': '204','H': '202','I': '202','J': '201',
-	  		'K': '203','L': '206','M': '216','N': '205','O': '200',
-	  		'P': '103','Q': '301','R': '098','S': '112','T': '205',
-	  		'U': '201','V': '207','W': '101','X': '200','Y': '205',
-	  		'Z': '104','0': '000','1': '030','2': '080','3': '001',
-	  		'4': '095','5': '080','6': '001','7': '002','8': '000',
-	  		'9': '000','!': '001','&': '002'
+	  	'K': '203','L': '206','M': '216','N': '205','O': '200',
+	  	'P': '103','Q': '301','R': '098','S': '112','T': '205',
+	  	'U': '201','V': '207','W': '101','X': '200','Y': '205',
+	  	'Z': '104','0': '000','1': '030','2': '080','3': '001',
+	  	'4': '095','5': '080','6': '001','7': '002','8': '000',
+	  	'9': '000','!': '001','&': '002'
 		},
 		architecture: {
 			'A': '200','B': '206','C': '200','D': '207','E': '100',
@@ -76,20 +78,5 @@ CreateApp.service('ThemeService', function ($http) {
 		}
 	},
 	this.codes = undefined;
-	this.findCodes = function (character) {
-		if (this.codes) {
-			var found = $.grep(this.codes, function(obj){ return Object.keys(obj)[0] == character + "=>"; });
-			return found[0][character + '=>'];
-		} else {
-			return [];
-		}
-	};
-	this.getCodes = function() {
-		var _this = this;
-		$http.get('/api/image-codes.php/', {headers: {'Accept': 'application/json;'}})
-		  .success(function(data, status) {
-		  	_this.codes = data;
-		  });
-	};
 
 });

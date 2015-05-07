@@ -1,6 +1,5 @@
 <div ng-show="false" ng-repeat="character in characters">
   {% raw %}
-    Character Count {{character.id}}
     <input type="text" name="character_{{character.id}}" value="{{character.fullName()}}">
   {% endraw %}
 </div>
