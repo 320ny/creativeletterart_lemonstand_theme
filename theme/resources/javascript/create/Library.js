@@ -33,7 +33,7 @@ CreateApp.service('Library',function ($http, $q) {
 
   this.getCharacterData = function(character) {
     var _this = this;
-    return $http.jsonp("http://commandcenter.creativeletterart.net/api/letters/"+ character +"/list?callback=JSON_CALLBACK").
+    return $http.jsonp("http://app.creativeletterart.net/api/letters/"+ character +"/list?callback=JSON_CALLBACK").
       success(function(data) {
         _this.data[character] = data;
       });
