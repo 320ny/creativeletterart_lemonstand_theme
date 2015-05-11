@@ -1,0 +1,20 @@
+{% set collections = item.product.collections %}
+{% set isCustom = false %}
+{% for collection in collections %}
+    {% if collection.api_code == 'custom_art' %}
+      {% set isCustom = true %}
+    {% endif %}
+{% endfor %}
+
+{% if isCustom %}
+  {% set fields = ['character_1','character_2','character_3','character_4','character_5','character_6',
+                   'character_7','character_8','character_9','character_10'] %}
+  {% set base_url = 'https://app.creativeletterart.net/api/letter/' %}
+  {% for field in fields %}
+    {% if item[field] %}
+      <img src="{{base_url}}{{item[field]}}" width="40" padding="2px">
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <img src="{{ item.product.images.first.thumbnail(60, 60)|default('http://placehold.it/80x80') }}">
+{% endif %}
