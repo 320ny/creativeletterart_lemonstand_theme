@@ -6,7 +6,7 @@ CreateApp.directive('editWordInput', function() {
   	},
   	replace: true,
   	template: '<div class="row edit-word-directive">'+
-  				'<div class="three columns offset-by-three"><label for="edit-word-input">Change/Edit Word:</label></div>'+
+  				'<div class="three columns"><label for="edit-word-input">Change/Edit Word:</label></div>'+
   			    '<div class="three columns">'+
   	              '<input id="edit-word-input" ng-model="createWord" type="text">'+
   	            '</div>'+

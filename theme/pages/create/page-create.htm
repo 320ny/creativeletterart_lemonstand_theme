@@ -31,29 +31,34 @@ url: /create
       {% endif %}
     {% endfor %}
 
+    <!--
     <div class="row" ng-show="word.length == '{{characters}}'">
       <div class="span8">
         {{product.name}}
       </div>
     </div>
-    <div class="row" ng-show="word.length == '{{characters}}'">
+    -->
+
+    <div class="row word-options" ng-show="word.length == '{{characters}}'">
       {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
         {{ code_block('create-controlls', {'product': product}) }}
         {{ code_block('create-letter-inputs', {'product': product}) }}
 
+        <!--
         <div id="price-{{product.id}}">
           {{ partial('create-price', {'product': product}) }}
         </div>
+        -->
 
         <input type="hidden" name="productId" value="{{ product.id }}"/>
-        <a href="#" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">Add to Cart</a>
+        <a href="#" class="add-to-cart" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">Add to Cart ({{ partial('create-price',{'product':product})}})</a>
       {{ close_form() }}
     </div>
   {% endfor %}
 
-  <div class="row">
-    <div class="span8">
-      <div edit-word-input create-word="word"></div>
+  <div class="row change-word-label">
+    <div class="span12">
+      <div edit-word-input create-word="word" class="label-div"></div>
     </div>
   </div>
 
@@ -61,13 +66,6 @@ url: /create
   {{ code_block('modals') }}
 
   <div id="added"></div>
-
-
-  <style>
-    .main {
-      background-color: #ffffff;
-    }
-  </style>
 
   <div ng-repeat="character in characters" ng-show="character.modalState == 'open'" ng-click="character.modal('close')" class="modal-backdrop"></div>
 </div>
