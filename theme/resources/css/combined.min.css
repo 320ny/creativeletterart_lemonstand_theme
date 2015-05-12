@@ -100,6 +100,7 @@ input#edit-word-input {
 #create_section {
   height: 300px;
   background-repeat: no-repeat;
+  background-position: center;
 }
 div#create,
 #letter_links {
@@ -140,4 +141,7 @@ a.add-to-cart:hover {
 }
 .word-option-wrap label {
   font-size: 1.2em;
+}
+.cart-items ul.options {
+  clear: both;
 }
