@@ -1,5 +1,5 @@
 <div>
-  <div class="span2">
+  <div class="span2 word-option-wrap">
     <label>Theme</label>
     <select ng-model="themeService.selectedTheme" class="span2">
   		<option value="default">Default</option>
@@ -12,7 +12,7 @@
     </select>
   </div>
 
-  <div class="span2">
+  <div class="span2 word-option-wrap">
     <label>Photo Choice </label>
     <select ng-model="product.photo" name="photo_color" class="span2">
   			<option value="color">Color</option>
@@ -22,7 +22,7 @@
   </div>
 
   {% for index, option in product.options %}
-    <div class="span2">
+    <div class="span2 word-option-wrap">
       <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
       <select {% if option.name == 'Frame Choice' %}ng-model="selectedFrame"  ng-change="frameService.updateFrame(selectedFrame, word.length)"{% endif %} id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="span2" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
           {% for key, value in option.values %}
