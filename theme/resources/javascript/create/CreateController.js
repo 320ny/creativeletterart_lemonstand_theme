@@ -1,4 +1,4 @@
-CreateApp.controller('CreateController', function($scope, $location, Character, ThemeService, ProductService, Library, FrameService) {
+CreateApp.controller('CreateController', function($scope, $location, Character, ThemeService, ProductService, Library, FrameService, MatService) {
   /*
   * INITIAL VALUES
   */
@@ -7,6 +7,7 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
 
   $scope.themeService = ThemeService;
   $scope.frameService = FrameService;
+  $scope.matService = MatService;
   $scope.product = ProductService;
   $scope.library = Library;
 
@@ -16,6 +17,8 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.$watch("word", function(newValue, oldValue) {
     if (newValue != oldValue) {
     	$scope.geterateCharacters();
+      if ($scope.word)
+        $scope.frameService.update($scope.word.length);
     }
   }, true);
 
@@ -28,7 +31,6 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   		  value.photo = newValue;
   		});
   	}
-    console.log("Photo changed to "+newValue)
   }, true);
 
   /*
@@ -38,7 +40,6 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   	if (newValue != oldValue) {
   		$scope.changeTheme(newValue);
   	}
-    console.log("Theme changed to "+newValue)
   }, true);
 
   $scope.changeTheme = function (newTheme) {
@@ -67,6 +68,8 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
       if ($location.search().theme) {
     		$scope.themeService.selectedTheme = $location.search().theme.toLowerCase();
     		$scope.changeTheme($scope.themeService.selectedTheme);
+        $scope.frameService.start($scope.word.length, 'Black 8x20');
+        $scope.matService.start("White Background")
     	}
     });
   };

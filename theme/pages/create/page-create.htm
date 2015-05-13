@@ -16,6 +16,7 @@ url: /create
 <script type="text/javascript" src="{{ 'javascript/create/Library.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/create/Character.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/create/services/FrameService.js'|theme_resource }}"></script>
+<script type="text/javascript" src="{{ 'javascript/create/services/MatService.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/create/directives/editWordInput.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/create/directives/createProductForm.js'|theme_resource }}"></script>
 
@@ -41,7 +42,7 @@ url: /create
 
     <div class="row word-options" ng-show="word.length == '{{characters}}'">
       {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
-        {{ code_block('create-controlls', {'product': product}) }}
+        {{ code_block('create-controlls', {'product': product, 'characters': characters}) }}
         {{ code_block('create-letter-inputs', {'product': product}) }}
 
         <!--
