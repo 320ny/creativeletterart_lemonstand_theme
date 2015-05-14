@@ -1,7 +1,7 @@
 {% set active_page = globals.active_page %}
 <ul class="nav nav-tabs nav-stacked">
-    <li class="{{ active_page == 'about-us' ? 'active' : null }}"><a href="{{ site_url('/about-us') }}" title="About us" class="title">About Us</a></li>
+    <li class="{{ active_page == 'about-us' ? 'active' : null }}"><a href="{{ site_url('/about-us') }}" title="About Us" class="title">About Us</a></li>
+    <li class="{{ active_page == 'contact-us' ? 'active' : null }}"><a href="{{ site_url('/contact-us') }}" title="Contact Us" class="title">Contact Us</a></li>
+    <li class="{{ active_page == 'store-location' ? 'active' : null }}"><a href="{{ site_url('/store-location') }}" title="Store Location" class="title">Store Location</a></li>
     <li class="{{ active_page == 'faq' ? 'active' : null }}"><a href="{{ site_url('/faq') }}" title="FAQ" class="title">Frequently Asked Questions</a></li>
-    <li class="{{ active_page == 'store-locator' ? 'active' : null }}"><a href="{{ site_url('/store-locator') }}" title="Store locator" class="title">Store Locator</a></li>
-    <li class="{{ active_page == 'contact-us' ? 'active' : null }}"><a href="{{ site_url('/contact-us') }}" title="Contact us" class="title">Contact Us</a></li>
 </ul>
