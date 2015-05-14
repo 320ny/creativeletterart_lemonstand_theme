@@ -32,27 +32,17 @@ url: /create
       {% endif %}
     {% endfor %}
 
-    <!--
-    <div class="row" ng-show="word.length == '{{characters}}'">
-      <div class="span8">
-        {{product.name}}
-      </div>
-    </div>
-    -->
-
     <div class="row word-options" ng-show="word.length == '{{characters}}'">
       {{ open_form({'action': "/product/#{product.url_name}", 'onsubmit': 'return false'}) }}
         {{ code_block('create-controlls', {'product': product, 'characters': characters}) }}
         {{ code_block('create-letter-inputs', {'product': product}) }}
 
-        <!--
-        <div id="price-{{product.id}}">
-          {{ partial('create-price', {'product': product}) }}
-        </div>
-        -->
-
         <input type="hidden" name="productId" value="{{ product.id }}"/>
-        <a href="#" class="add-to-cart" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">Add to Cart ({{ partial('create-price',{'product':product})}})</a>
+        <a href="#" class="add-to-cart" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">
+          <div id="price-{{product.id}}">
+            {{ partial('create-price', {'product': product}) }}
+          </div>
+        </a>
       {{ close_form() }}
     </div>
   {% endfor %}

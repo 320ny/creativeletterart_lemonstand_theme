@@ -7,14 +7,41 @@
 {% endfor %}
 
 {% if isCustom %}
+
+  {% set css = "padding-bottom:10px;" %}
+  {% set size = item['custom_word']|length %}
+  {% for option in item.options %}
+    {% if option.name == 'Frame Choice' %}
+      {% for frame in ['black', 'driftwood', 'mahogany', 'white'] %}
+        {% if frame in option.value | lower %}
+
+          {% set css = "background-image: url('https://s3.amazonaws.com/ls-account-data-3-us-east-1/store-creativeletterart-54dd9570d465e/themes/laboutique/resources/images/frames/#{frame}_#{size}.png');" %}
+          {% set css = "#{css}background-size:#{42*size+42}px 100px;" %}
+          {% set css = "#{css}background-repeat: no-repeat;" %}
+          {% set css = "#{css}padding: 20px 0px 10px 20px;" %}
+          {% set css = "#{css}width:500px;height:80px;" %}
+
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
   {% set fields = ['character_1','character_2','character_3','character_4','character_5','character_6',
                    'character_7','character_8','character_9','character_10'] %}
   {% set base_url = 'https://app.creativeletterart.net/api/letter/' %}
-  {% for field in fields %}
-    {% if item[field] %}
-      <img src="{{base_url}}{{item[field]}}" width="40" padding="2px">
-    {% endif %}
-  {% endfor %}
+
+  <div style="{{css}}">
+    {% for field in fields %}
+      {% if item[field] %}
+        <img src="{{base_url}}{{item[field]}}" width="40" padding="2px">
+      {% endif %}
+    {% endfor %}
+  </div>
+
 {% else %}
-  <img src="{{ item.product.images.first.thumbnail(60, 60)|default('http://placehold.it/80x80') }}">
+  <div class="image visible-desktop">
+    <a href="/product/{{ item.product.url_name }}">
+      <img src="{{ item.product.images.first.thumbnail(60, 60)|default('http://placehold.it/80x80') }}">
+    </a>
+  </div>
 {% endif %}

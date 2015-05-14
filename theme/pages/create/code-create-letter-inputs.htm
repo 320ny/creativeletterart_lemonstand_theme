@@ -1,5 +1,6 @@
-<div ng-show="false" ng-repeat="character in characters">
-  {% raw %}
-    <input type="text" name="character_{{character.id}}" value="{{character.fullName()}}">
-  {% endraw %}
-</div>
+{% raw %}
+  <div ng-show="false" ng-repeat="character in characters">
+    <input type="text" name="character_{{character.id}}" value="{{character.fullName()}}" />
+  </div>
+  <input ng-show="false" name="custom_word" value="{{word | uppercase}}" />
+{% endraw %}

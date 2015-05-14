@@ -16,15 +16,14 @@
                 {% for item in items %}
                     <tr>
                         <td data-title="Product" class="col_product text-left">
-                            <div class="image visible-desktop">
-                              <a href="/product/{{ item.product.url_name }}">
-                                {{ partial('shop-item-image', {'item': item}) }}
-                              </a>
-                            </div>
-
                             <h5>
                                 <a href="/product/{{ item.product.url_name }}">{{ item.product.name }}</a>
                             </h5>
+
+
+                            {{ partial('shop-item-image', {'item': item}) }}
+
+
                             <div>
                               <ul class="options">
                               {% set description = item.optionsString() %}
