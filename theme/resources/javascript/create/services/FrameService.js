@@ -11,9 +11,8 @@ CreateApp.service('FrameService',function () {
     if (size != 0) {
       this._updateText();
       this._setFrameUrl(size);
-      this._setSelectsTo(this.text);
     } else {
-      this.start('Black 8x20', 0)
+      this.start('Black', 0)
     }
   };
 
@@ -30,13 +29,44 @@ CreateApp.service('FrameService',function () {
     frame10: '',
   };
 
+  this.sizeChanged = function(size) {
+    var selection = $('.create-frame-size:visible').val();
+    var text = $("option[value="+selection+"]").text();
+    var frame_select = $('.create-frame-select:visible')[0];
+    console.log(this.text);
+    if (text == "No Frame") {
+      this._setSelectTo(frame_select, "No Frame");
+      this.text = "No Frame"
+      this._setFrameUrl(size);
+    } else if (this.text == "No Frame" && text != "No Frame") {
+      this._setSelectTo(frame_select, "Black");
+      this.text = "Black"
+      this._setFrameUrl(size);
+    }
+  };
+
   // private
+
+  this._unNoFrameSize = function() {
+    var select = $('.create-frame-size:visible');
+    select.val(select.find("option:first").val());
+  };
+
+  this._noFrameSize = function() {
+    var frame_select = $('.create-frame-size:visible')[0];
+    this._setSelectTo(frame_select, "No Frame");
+  };
 
   this._updateText = function() {
     var selection = $('.create-frame-select:visible').val();
     if (selection) {
       var option = $("option[value="+selection+"]");
-      this.text = option.text();
+      var text = option.text();
+      if (text == "No Frame")
+        this._noFrameSize();
+      if (this.text == "No Frame" && text != "No Frame")
+        this._unNoFrameSize();
+      this.text = text;
     }
   };
 
@@ -55,18 +85,26 @@ CreateApp.service('FrameService',function () {
   };
 
   this._setFrameUrl = function(size) {
-    var url = this._baseUrl + this._type() + '_'+ size +'.png';
-    $('#create_section').css('background-image', 'url('+ url +')');
+    if (this._type() == 'none') {
+      $('#create_section').css('background-image', '');
+    } else {
+      var url = this._baseUrl + this._type() + '_'+ size +'.png';
+      $('#create_section').css('background-image', 'url('+ url +')');
+    }
   };
 
   this._setSelectsTo = function(option_text) {
     var selects = $('.create-frame-select');
     angular.forEach(selects, function(select) {
-      angular.forEach(select.options, function(option) {
-        if (option.text._contains(option_text)) {
-          select.value = option.value;
-        };
-      });
+      this._setSelectTo(select, option_text);
+    }, this);
+  };
+
+  this._setSelectTo = function(frame_select, option_text) {
+    angular.forEach(frame_select.options, function(option) {
+      if (option.text._contains(option_text)) {
+        frame_select.value = option.value;
+      };
     });
   };
 

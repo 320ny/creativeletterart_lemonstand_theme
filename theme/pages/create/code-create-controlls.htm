@@ -25,11 +25,11 @@
     <div class="span2 word-option-wrap">
       <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
       <select
-        {% if option.name == 'Frame Choice' %}
-          class="create-frame-select span2" ng-model="frameService.selected.frame{{characters}}" ng-change="frameService.update(word.length)"
+        {% if option.name == 'Frame Size' %}
+          class="create-frame-size span2"
         {% endif %}
-        {% if option.name == 'Mat Choice' %}
-          class="create-mat-select span2" ng-model="matService.selected.mat{{characters}}" ng-change="matService.update(matService.selected.mat{{characters}})"
+        {% if option.name == 'Frame Type' %}
+          class="create-frame-select span2" ng-model="frameService.selected.frame{{characters}}" ng-change="frameService.update(word.length)"
         {% endif %}
         id="{{ 'option-'~index }}" name="options[{{ option.id }}]" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
           {% for key, value in option.values %}

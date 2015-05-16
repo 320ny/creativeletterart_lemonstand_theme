@@ -17,8 +17,11 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.$watch("word", function(newValue, oldValue) {
     if (newValue != oldValue) {
     	$scope.geterateCharacters();
-      if ($scope.word)
-        $scope.frameService.update($scope.word.length);
+      if ($scope.word) {
+        setTimeout(function() {
+          $scope.frameService.update($scope.word.length);
+        }, 200);
+      }
     }
   }, true);
 
@@ -48,6 +51,10 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   	});
   };
 
+  // Frame Size Change
+  $('.create-frame-size').change(function() {
+    $scope.frameService.sizeChanged($scope.word.length);
+  });
 
   /*
   * INTERNAL FUNCTIONS
@@ -68,8 +75,8 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
       if ($location.search().theme) {
     		$scope.themeService.selectedTheme = $location.search().theme.toLowerCase();
     		$scope.changeTheme($scope.themeService.selectedTheme);
-        $scope.frameService.start($scope.word.length, 'Black 8x20');
-        $scope.matService.start("White Background")
+        $scope.frameService.start($scope.word.length, 'Black');
+        //$scope.matService.start("White Background")
     	}
     });
   };

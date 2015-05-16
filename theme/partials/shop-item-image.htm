@@ -11,7 +11,7 @@
   {% set css = "padding-bottom:10px;" %}
   {% set size = item['custom_word']|length %}
   {% for option in item.options %}
-    {% if option.name == 'Frame Choice' %}
+    {% if option.name == 'Frame Type' %}
       {% for frame in ['black', 'driftwood', 'mahogany', 'white'] %}
         {% if frame in option.value | lower %}
 
