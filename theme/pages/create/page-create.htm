@@ -20,7 +20,7 @@ url: /create
 <script type="text/javascript" src="{{ 'javascript/create/directives/editWordInput.js'|theme_resource }}"></script>
 <script type="text/javascript" src="{{ 'javascript/create/directives/createProductForm.js'|theme_resource }}"></script>
 
-<div class="container" ng-app="CreateApp" ng-controller="CreateController">
+<div class="container" ng-app="CreateApp" ng-controller="CreateController" ng-cloak>
 
   {% set customCollection = 'custom_art'|collection %}
   {% for product in customCollection.products %}
@@ -38,13 +38,20 @@ url: /create
         {{ code_block('create-letter-inputs', {'product': product}) }}
 
         <input type="hidden" name="productId" value="{{ product.id }}"/>
-        <a href="#" class="add-to-cart" data-ajax-handler="shop:onAddToCart" data-ajax-update="#mini-cart=shop-minicart, #added=create-modal">
+        <button id="add_custom_{{product.id}}_to_cart" class="add-to-cart">
           <div id="price-{{product.id}}">
             {{ partial('create-price', {'product': product}) }}
           </div>
-        </a>
+        </button>
       {{ close_form() }}
     </div>
+    <script>
+      $(document).on('click','#add_custom_{{product.id}}_to_cart', function(){
+        $(this).sendRequest('shop:onAddToCart', {
+          update: {'#mini-cart': 'shop-minicart', '#added': 'create-modal'}
+        });
+      });
+    </script>
   {% endfor %}
 
   <div class="row change-word-label">
@@ -60,3 +67,35 @@ url: /create
 
   <div ng-repeat="character in characters" ng-show="character.modalState == 'open'" ng-click="character.modal('close')" class="modal-backdrop"></div>
 </div>
+
+<style>
+.span1-5 {
+  width: 130px;
+}
+button.add-to-cart {
+  width: auto;
+  margin: 0;
+  float: right;
+  padding: 20px 35px 19px;
+  position: relative;
+  border: 1px solid #467876;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1.7em;
+  font-weight: bold;
+  line-height: 1;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: background-color 0.15s ease-in-out;
+  -moz-transition: background-color 0.15s ease-in-out;
+  -o-transition: background-color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out;
+  background-color: #65a5a3;
+}
+</style>

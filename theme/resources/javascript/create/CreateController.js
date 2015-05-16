@@ -10,6 +10,8 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.matService = MatService;
   $scope.product = ProductService;
   $scope.library = Library;
+  $scope.photoSize = '4x6'
+  $scope.matingType = 'White'
 
   /*
   * WORD
@@ -53,7 +55,9 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
 
   // Frame Size Change
   $('.create-frame-size').change(function() {
-    $scope.frameService.sizeChanged($scope.word.length);
+    $scope.$apply(
+      $scope.frameService.sizeChanged($scope.word.length)
+    );
   });
 
   /*

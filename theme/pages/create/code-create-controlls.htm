@@ -1,7 +1,7 @@
 <div>
-  <div class="span2 word-option-wrap">
+  <div class="span1-5 word-option-wrap">
     <label>Theme</label>
-    <select ng-model="themeService.selectedTheme" class="span2">
+    <select ng-model="themeService.selectedTheme" class="span1-5">
   		<option value="default">Default</option>
   		<option value="architecture">Architecture</option>
   		<option value="industrial">Industrial</option>
@@ -12,9 +12,9 @@
     </select>
   </div>
 
-  <div class="span2 word-option-wrap">
+  <div class="span1-5 word-option-wrap">
     <label>Photo Choice </label>
-    <select ng-model="product.photo" name="photo_color" class="span2">
+    <select ng-model="product.photo" name="photo_color" class="span1-5">
   			<option value="color">Color</option>
   			<option value="sepia">Sepia</option>
   			<option value="bw">Black &amp; White</option>
@@ -22,14 +22,14 @@
   </div>
 
   {% for index, option in product.options %}
-    <div class="span2 word-option-wrap">
+    <div class="span1-5 word-option-wrap">
       <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
       <select
         {% if option.name == 'Frame Size' %}
-          class="create-frame-size span2"
+          class="create-frame-size span1-5"
         {% endif %}
         {% if option.name == 'Frame Type' %}
-          class="create-frame-select span2" ng-model="frameService.selected.frame{{characters}}" ng-change="frameService.update(word.length)"
+          class="create-frame-select span1-5" ng-model="frameService.types.frame{{characters}}" ng-change="frameService.update(word.length)"
         {% endif %}
         id="{{ 'option-'~index }}" name="options[{{ option.id }}]" data-ajax-handler="shop:product" data-ajax-update="#price-{{product.id}}=create-price">
           {% for key, value in option.values %}
@@ -38,4 +38,21 @@
       </select>
     </div>
   {% endfor %}
+
+  <div ng-if="frameService.text == 'No Frame'" class="span1-5 word-option-wrap">
+    <label>Photo Size </label>
+    <select ng-model="photoSize" name="custom_photo_size" class="span1-5">
+  			<option value="4x6">4x6</option>
+  			<option value="5x7">5x7</option>
+    </select>
+  </div>
+
+  <div ng-if="frameService.text != 'No Frame'" class="span2 word-option-wrap">
+    <label>Mating Choice</label>
+    <select ng-model="matingType" name="custom_mat_type" class="span2">
+        <option value="White">White Background</option>
+        <option value="Black">Black Background</option>
+    </select>
+  </div>
+
 </div>

@@ -16,24 +16,15 @@ CreateApp.service('FrameService',function () {
     }
   };
 
-  this.selected = {
-    frame1: '',
-    frame2: '',
-    frame3: '',
-    frame4: '',
-    frame5: '',
-    frame6: '',
-    frame7: '',
-    frame8: '',
-    frame9: '',
-    frame10: '',
+  this.types = {
+    frame1: '',frame2: '',frame3: '',frame4: '',frame5: '',
+    frame6: '',frame7: '',frame8: '',frame9: '',frame10: '',
   };
 
   this.sizeChanged = function(size) {
     var selection = $('.create-frame-size:visible').val();
     var text = $("option[value="+selection+"]").text();
     var frame_select = $('.create-frame-select:visible')[0];
-    console.log(this.text);
     if (text == "No Frame") {
       this._setSelectTo(frame_select, "No Frame");
       this.text = "No Frame"

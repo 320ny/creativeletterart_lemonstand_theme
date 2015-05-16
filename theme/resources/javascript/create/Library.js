@@ -1,7 +1,8 @@
 CreateApp.service('Library',function ($http, $q) {
 
   this.list = function(character) {
-    return this.data[character.toUpperCase()];
+    var list = this.data[character.toUpperCase()];
+    return list ? list : [];
   };
 
   this.findByCode = function(name, code) {
