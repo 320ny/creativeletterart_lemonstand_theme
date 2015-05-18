@@ -4,14 +4,8 @@
     <h3>Click the '{{character.name | uppercase | createSymbol}}' photo you like below</h3>
 
     <div class='modal-body'  ng-if="character.name != ' '">
-      <a ng-repeat-start="letter in library.list(character.name)"href="" ng-click="character.applyCodeAndPhoto(letter.code, 'color')">
+      <a ng-repeat="letter in library.list(character.name)" href="" ng-click="character.applyCodeAndPhoto(letter.code, 'color')">
         <img ng-src="{{letter.color_thumb}}" width='80'/>
-      </a>
-      <a href="" ng-click="character.applyCodeAndPhoto(letter.code, 'sepia')">
-        <img ng-src="{{letter.sepia_thumb}}" width='80'/>
-      </a>
-      <a ng-repeat-end href="" ng-click="character.applyCodeAndPhoto(letter.code, 'bw')">
-        <img ng-src="{{letter.bw_thumb}}" width='80'/>
       </a>
     </div>
   </div>

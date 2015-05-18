@@ -7,10 +7,10 @@ CreateApp.run(function($location) {
 	}
 });
 
-CreateApp.filter('createSymbol', function() {
+CreateApp.filter('createSymbol', function(SymbolChecker) {
 	return function(input) {
-	  if (input == '!' || input == '&')
-	  	return 'symbol';
+	  if (SymbolChecker.isSymbol(input))
+	  	return 'Symbol';
 	  else
 	  	return input;
 	};
