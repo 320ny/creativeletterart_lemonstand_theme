@@ -16,7 +16,7 @@
                 {% if is_on_sale %}<span class="badge badge-sale">SALE</span>{% endif %}
             </div>
             <div class="title">
-                <div class="prices">aSasas
+                <div class="prices">
                     {% if is_on_sale %}<del class="base">{{ product.fullPrice|currency }}</del>{% endif %}
                     <span class="price">{{ product.price|currency }}</span>
                 </div>
