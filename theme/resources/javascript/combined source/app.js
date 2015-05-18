@@ -1,11 +1,11 @@
 $( document ).ready(function() {
-
+    
     //
     // Handle the shipping option radio button clicks
     //
     $('#checkout-page').on('change', '#shipping-methods input', function(){
-    // When the shipping method is shipping we want to update the
-    // order totals area on the Checkout page. The native Checkout
+    // When the shipping method is shipping we want to update the 
+    // order totals area on the Checkout page. The native Checkout 
     // action does all the calculations.
     //
     $(this).sendRequest('shop:onCheckoutShippingMethod', {
@@ -17,8 +17,8 @@ $( document ).ready(function() {
     // Handle add to cart modal
     //
     $(document).on('click','#add_to_cart', function(){
-    // When the shipping method is shipping we want to update the
-    // order totals area on the Checkout page. The native Checkout
+    // When the shipping method is shipping we want to update the 
+    // order totals area on the Checkout page. The native Checkout 
     // action does all the calculations.
     //
     $(this).sendRequest('shop:onAddToCart', {
@@ -42,12 +42,12 @@ $( document ).ready(function() {
      });
 
 
-
+    
     //
     // Handle reload of sharrre and elevate zoom javascscript when loading product variants
     //
     function sharezoom() {
-
+        
         $('#sharrre .twitter').sharrre({
     		template: '<button class="btn btn-mini btn-twitter"><i class="icon-twitter"></i> &nbsp; {total}</button>',
     		share: {
@@ -60,7 +60,7 @@ $( document ).ready(function() {
     			api.openPopup('twitter');
     		}
     	});
-
+    	
     	$('#sharrre .facebook').sharrre({
     		template: '<button class="btn btn-mini btn-facebook"><i class="icon-facebook"></i> &nbsp; {total}</button>',
     		share: {
@@ -73,8 +73,8 @@ $( document ).ready(function() {
     			api.openPopup('facebook');
     		}
     	});
-
-
+    	
+    	
     	$('#sharrre .pinterest').sharrre({
     		template: '<button class="btn btn-mini btn-pinterest"><i class="icon-pinterest"></i> &nbsp; {total}</button>',
     		share: {
@@ -86,18 +86,18 @@ $( document ).ready(function() {
     			api.simulateClick();
     			api.openPopup('pinterest');
     		},
-
+    
     	});
-
-
+    	
+    	
     	$('.zoomContainer').remove();
 
 		if (typeof(zoomConfig)!='undefined'){
-			$('.product-images .primary img').elevateZoom(zoomConfig);
+			$('.product-images .primary img').elevateZoom(zoomConfig);	
 		}
-
-
-
+		
+    	
+    	
     	$('.product-images .primary img').elevateZoom({
     		zoomType: "inner",
     		cursor: "crosshair",
@@ -107,8 +107,8 @@ $( document ).ready(function() {
     		gallery: 'gallery',
     		galleryActiveClass: 'active'
     	});
-
-
+    	
+    	
 
         }
 
@@ -123,3 +123,7 @@ $( document ).ready(function() {
     });
 
 });
+   
+   
+   
+
