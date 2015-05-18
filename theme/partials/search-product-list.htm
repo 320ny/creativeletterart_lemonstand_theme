@@ -7,7 +7,7 @@
      {% for product in pagination.items %}
       {% set is_on_sale = product.onSale %}
       {% set page_url = '/product/' ~ product.url_name %}
-      
+
         <li class="standard" data-price="{{ product.price}}">
             <a href="{{ page_url }}" title="{{ product.images.first.title }}">
             <div class="image">
@@ -16,7 +16,7 @@
                 {% if is_on_sale %}<span class="badge badge-sale">SALE</span>{% endif %}
             </div>
             <div class="title">
-                <div class="prices">
+                <div class="prices">aSasas
                     {% if is_on_sale %}<del class="base">{{ product.fullPrice|currency }}</del>{% endif %}
                     <span class="price">{{ product.price|currency }}</span>
                 </div>
