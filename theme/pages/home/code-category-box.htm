@@ -1,0 +1,21 @@
+{% set category = category_name|category %}
+{% set url = "/category/#{category.url_name}" %}
+{% set button_text = "Browse #{category.name}" %}
+
+{% if category_name == 'custom' %}
+  {% set url = '/create' %}
+  {% set button_text = "Create #{category.name}" %}
+{% endif %}
+
+<div class="box border-top">
+
+  <p><a href="{{url}}"><img src="{{ category.images.first.thumbnail(photo_size, 'auto') }}" alt="" /></a></p>
+  <div class="hgroup title">
+    <h3><a href="{{url}}">{{category.name}}</a></h3>
+    <h5>{{category.short_description|unescape}}</h5>
+    <br/>
+    <a class="btn btn-primary btn-small" title="" href="{{url}}">
+      {{button_text}} &nbsp; <em class="icon-chevron-right"></em>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+---
+description: 'Payment form partial for Amazon Payments payment method'
+---
+<form method="post" action="" data-ajax-handler="shop:onPay">
+    <input type="hidden" value="{{ paymentMethod.id }}" name="payment_method_id">
+    <input type="submit" value="Pay via Amazon" class="button">
+</form>

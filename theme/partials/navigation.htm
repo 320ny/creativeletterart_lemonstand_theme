@@ -8,7 +8,7 @@
                     <div class="menu-main-navigation-container">
                         <ul id="menu-main-navigation" class="main-menu">
                             <li class="{{ active_page == 'home' ? 'active' : null }} menu-item-home menu-item-has-children megamenu-parent"><a href="{{ site_url('/') }}">Home</a></li>
-                            <li class="menu-item-has-children"><a href="{{ site_url('shop') }}">Shop</a>
+                            <!--<li class="menu-item-has-children"><a href="{{ site_url('shop') }}">Shop</a>
                                 {% if categories.count %}
                                 {% tree categories %}
                                 <ul class="sub-menu">
@@ -22,9 +22,31 @@
                                 {% endtree %}
                                 {% endif %}
                             </li>
+                            -->
+
                             <li class="{{ active_page == 'create' ? 'active' : null }}"><a href="{{ site_url('create') }}">Create</a></li>
+                            {% if categories.count %}
+                            {% tree categories %}
+                              {% for category in tree.items %}
+                                <li class="menu-item-has-children"><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a>
+
+                                {% if category.children.count %}
+                                  <ul class="sub-menu">
+                                      {% for child in category.children %}
+                                        <li>
+                                            <a href="/category/{{ child.fullUrlName }}">{{ child.name }}</a>
+                                        </li>
+                                      {% endfor %}
+                                  </ul>
+                                {% endif %}
+                                </li>
+                              {% endfor %}
+                            {% endtree %}
+                            {% endif %}
+
                             <li class="{{ active_page == 'about-us' ? 'active' : null }}"><a href="{{ site_url('about-us') }}">About</a></li>
                             <li class="{{ active_page == 'contact-us' ? 'active' : null }}"><a href="{{ site_url('contact-us') }}">Contact Us</a></li>
+
                         </ul>
                     </div>
                 </div>

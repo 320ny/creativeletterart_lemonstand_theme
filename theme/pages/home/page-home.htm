@@ -35,8 +35,8 @@ url: /
                             <br />
                             <p>We offer a full line of Custom Frames. If it can be Imagined we can build it!!</p>
                             <br />
-                            <a class="btn btn-primary btn-small" title="" href="/category/studio">
-                                Shop now &nbsp; <em class="icon-chevron-right"></em>
+                            <a class="btn btn-primary btn-small" title="" href="/category/picture-frames">
+                                View Frames &nbsp; <em class="icon-chevron-right"></em>
                             </a>
                         </div>
                     </div>
@@ -49,10 +49,9 @@ url: /
                         <div class="span6 offset6 text-right">
                             <h3>Wedding Guest Books/Collage</h3>
                             <br />
-                            <p>Create A Time Capsule of Your Secial Moment in Time</p>
-                            <br /> <a class="btn btn-small" title="" href="#">Find out more</a>
+                            <p>Create A Time Capsule of Your Special Moment in Time</p>
                             <a class="btn btn-primary btn-small" title="" href="#">
-                                Buy now &nbsp; <em class="icon-chevron-right"></em>
+                                Browse Wedding &nbsp; <em class="icon-chevron-right"></em>
                             </a>
                         </div>
                     </div>
@@ -68,7 +67,7 @@ url: /
                             <p>Wedding Dates, Graduation, Bar Mitzvah’s, Christenings and more…</p>
                             <br />
                             <a class="btn btn-primary btn-small" title="" href="/category/studio">
-                                Shop now &nbsp; <em class="icon-chevron-right"></em>
+                                Browse Totally Numbered &nbsp; <em class="icon-chevron-right"></em>
                             </a>
                         </div>
                     </div>
@@ -78,6 +77,35 @@ url: /
     </section>
     <!-- End class="flexslider" -->
     <!-- Promos -->
+    <section class="category-boxes">
+      <div class="container">
+          <div class="row">
+              <div class="span6">
+                {{ code_block('category-box', {'category_name': 'custom', photo_size: '530'}) }}
+              </div>
+              <div class="span6">
+                {{ code_block('category-box', {'category_name': 'numbered', photo_size: '530'}) }}
+              </div>
+          </div>
+      </div>
+    </section>
+    <section class="category-boxes">
+      <div class="container">
+          <div class="row">
+              <div class="span4">
+                {{ code_block('category-box', {'category_name': 'studio', photo_size: '330'}) }}
+              </div>
+              <div class="span4">
+                {{ code_block('category-box', {'category_name': 'frames', photo_size: '330'}) }}
+              </div>
+              <div class="span4">
+                {{ code_block('category-box', {'category_name': 'wedding', photo_size: '330'}) }}
+              </div>
+          </div>
+      </div>
+    </section>
+
+
     <section class="promos">
         <div class="container">
             <div class="row">
@@ -127,9 +155,16 @@ url: /
     <!-- Featured content" -->
     <section class="featured">
         <div class="container">
-
             <div class="row">
                 <div class="span9">
+
+                  <div class="row">
+                    <div class="span9">
+                      <div class="box border-top text-center">
+                        <h4>Featured Products</h4>
+                      </div>
+                    </div>
+                  </div>
                     <!-- Products list -->
                     {% set featuredCollection = 'featured'|collection %}
                     {% if featuredCollection.products.count > 0 %}
@@ -200,3 +235,10 @@ url: /
     <!-- End Featured content" -->
 </section>
 <!-- End class="home" -->
+
+<style>
+.category-boxes div.hgroup {
+  border-bottom: none;
+  padding-bottom: 5px;
+}
+</style>

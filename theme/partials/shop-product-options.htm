@@ -7,6 +7,7 @@
                     <label class="title" for="{{ 'option-'~index }}">{{ option.name }}</label>
                     <div class="controls">
                         <select id="{{ 'option-'~index }}" name="options[{{ option.id }}]" class="product-option">
+                          <option value="">Select a {{option.name}}</option>
                           {% for key, value in option.values %}
                             <option value='{{ key }}' {{ option_state(postedOptions[option.id], key) }}>{{ value }}</option>
                           {% endfor %}
