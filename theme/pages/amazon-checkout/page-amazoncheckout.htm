@@ -1,0 +1,17 @@
+---
+action: 'amazonPayments:checkout'
+template: standard
+protocol: all
+published: true
+name: 'Amazon Checkout'
+url: /amazon-checkout
+---
+<div class="row">
+  <div class="content twelve columns">
+    {% if not items.count %}
+      <a class="secondary button" href="{{ site_url('/') }}">Your cart is empty! Continue shopping.</a>
+    {% else %}
+      <div id="checkout-page">{{ partial('shop-amazon-checkout') }}</div>
+    {% endif %}
+  </div>
+</div>

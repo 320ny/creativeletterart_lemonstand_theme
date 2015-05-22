@@ -9,11 +9,18 @@
                         <h3>Shopping cart</h3>
                         <h5>You currently have <strong>{{ cart.getItemNum() }}</strong> item(s) in your cart</h5>
                     </div>
-    
+
                     <!-- Cart Items -->
                     {{ partial('shop-cart-items', {'edit_cart': true}) }}
                     <!-- End Cart Items -->
-    
+
+                    <div class="box-header">
+                      <h3>Enter Your Gift Message Here:</h3>
+                      <textarea name="gift_message" placeholder="Enter Your Gift Message Here">
+                        {{ cart.gift_message }}
+                      </textarea>
+                    </div>
+
                     <div class="box-footer">
                         <div class="pull-left">
                             <a href="/shop" class="btn btn-small">
@@ -24,13 +31,13 @@
                             <button class="btn btn-small mm20" data-ajax-handler="shop:cart" data-ajax-update="#cart-content=shop-cart-content, #mini-cart=shop-minicart">
                             <i class="icon-undo"></i> &nbsp; Update cart
                             </button>
-    
+
                             {% if customer %}
-                            <a class="btn btn-primary btn-small mm20" href="{{ site_url('/checkout') }}">Checkout</a>
+                              <a class="btn btn-primary btn-small mm20" data-ajax-handler="shop:cart" data-ajax-extra-fields="redirect=/checkout">Checkout</a>
                             {% else %}
-                            <a class="btn btn-primary btn-small mm20" href="{{ site_url('/checkout-start') }}">Checkout</a>
+                              <a class="btn btn-primary btn-small mm20" data-ajax-handler="shop:cart" data-ajax-extra-fields="redirect=/checkout-start">Checkout</a>
                             {% endif %}
-    
+
                         </div>
                     </div>
                 </div>
@@ -57,7 +64,7 @@
                                     <label for="state">State</label>
                                     <div id="shipping_states">
                                         <select class="span12" id="state" name="state">
-    
+
                                         </select>
                                     </div>
                                 </div>
@@ -106,7 +113,7 @@
                                     <td>£8.95</td>
                                 </tr>
                             </table>
-    
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -120,7 +127,7 @@
                 <!-- End Shipping modal -->
             </div>
             <div class="span3">
-    
+
                 <!-- Cart details -->
                 <div class="cart-details">
                    <div class="box">
@@ -141,7 +148,7 @@
                     </div>
                 </div>
                 <!-- End class="cart-details" -->
-    
+
                 <!-- Coupon -->
                 <div class="coupon">
                     <div class="box">
@@ -149,7 +156,7 @@
                             <h3>Coupon code</h3>
                             <h5>Enter your coupon here to redeem</h5>
                         </div>
-    
+
                         <label for="coupon_code">Coupon code</label>
                         <div class="input-append">
                             <input id="coupon_code" value="{{ coupon_code }}" type="text" name="coupon" />
@@ -157,7 +164,7 @@
                             <i class="icon-ok"></i>
                             </button>
                         </div>
-    
+
                     </div>
                 </div>
                 <!-- End class="coupon" -->

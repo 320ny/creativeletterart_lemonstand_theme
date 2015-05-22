@@ -15,13 +15,18 @@
                     <div id="checkout-content">
                         <div class="box-header">
                             <h3>Order review</h3>
-                            <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h5>
+                            <h5>Make sure the order is correct</h5>
                         </div>
 
 
                         <!-- Cart Items -->
                         {{ partial('shop-cart-items', {'edit_cart': false}) }}
                         <!-- End Cart Items -->
+                        <div class="box-header">
+                        <h3>Additional Order Notes</h3>
+                        <input class="span4" type="text" name="orderNotes" value="{{ orderNotes }}"/>
+                      </div>
+
                         <div class="box-footer">
                             <div class="pull-left">
                                 <a href="#"
