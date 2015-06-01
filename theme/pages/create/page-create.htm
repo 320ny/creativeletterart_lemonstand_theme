@@ -2,7 +2,7 @@
 template: standard
 protocol: all
 published: true
-name: 'Create'
+name: Create
 url: /create
 ---
 <!-- Load Angular -->
@@ -44,6 +44,10 @@ url: /create
             {{ partial('create-price', {'product': product}) }}
           </div>
         </button>
+        
+
+        <textarea class="hidden" ng-model="personalizedMessage" name="personalized_message"></textarea>
+
       {{ close_form() }}
     </div>
     <script>
@@ -63,6 +67,14 @@ url: /create
 
   {{ code_block('framed-photos') }}
   {{ code_block('modals') }}
+  
+  <div class="row">
+    <div class="span4 offset4">
+        <br>
+        <p>Enter any personalization you want included with your sign</p>
+        <textarea ng-model="personalizedMessage" name="personalized_message"></textarea>
+    </div>
+  </div>
 
   <div id="added"></div>
 
