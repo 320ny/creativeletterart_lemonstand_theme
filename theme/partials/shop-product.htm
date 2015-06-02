@@ -107,7 +107,7 @@
                                     {% if product.enabled %}
                                         {% if not product.isOutOfStock() or product.allow_preorder %}
                                             {{ flash() }}
-                                            <div class="add-to-cart">
+                                            <div class="add-to-cart" style="display:none;">
                                                 <input type="hidden" name="productId" value="{{ product.id }}"/>
                                                 <button class="btn btn-primary btn-large" href="#" id="add_to_cart">
                                                 <i class="icon-plus"></i> &nbsp; Add to cart</button>
@@ -198,3 +198,30 @@
     <!-- End id="added" -->
 </section>
 <!-- End class="product-info" -->
+
+<script>
+(function() {
+  function registerSelects() {
+    var selects = $('#product-page .options select');
+    selects.on('change', function() {
+      $('.add-to-cart').fadeOut();
+    });
+  };
+
+  function showAddToCart() {
+    $('.add-to-cart').fadeIn();
+  };
+
+  function testSelects() {
+    var selects = $('#product-page .options select');
+    var noSelected = selects.filter(function() { return this.value == "0"; });
+    if (noSelected.length == 0)
+      showAddToCart();
+  };
+
+  testSelects();
+  registerSelects();
+
+}())
+
+</script>
