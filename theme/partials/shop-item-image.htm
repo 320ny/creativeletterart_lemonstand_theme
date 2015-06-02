@@ -10,12 +10,19 @@
 
   {% set css = "padding-bottom:10px;" %}
   {% set size = item['custom_word']|length %}
+
+  {% if item['custom_mat_type'] == 'Black' %}
+    {% set mating = '_black' %}
+  {% else %}
+    {% set mating = '' %}
+  {% endif %}
+
   {% for option in item.options %}
     {% if option.name == 'Frame Type' %}
       {% for frame in ['black', 'driftwood', 'mahogany', 'white'] %}
         {% if frame in option.value | lower %}
 
-          {% set css = "background-image: url('https://s3.amazonaws.com/ls-account-data-3-us-east-1/store-creativeletterart-54dd9570d465e/themes/laboutique/resources/images/frames/#{frame}_#{size}.png');" %}
+          {% set css = "background-image: url('https://s3.amazonaws.com/ls-account-data-3-us-east-1/store-creativeletterart-54dd9570d465e/themes/laboutique/resources/images/frames/#{frame}_#{size}#{mating}.png');" %}
           {% set css = "#{css}background-size:#{42*size+42}px 100px;" %}
           {% set css = "#{css}background-repeat: no-repeat;" %}
           {% set css = "#{css}padding: 20px 0px 10px 20px;" %}

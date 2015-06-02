@@ -1,4 +1,4 @@
-CreateApp.service('FrameService',function () {
+CreateApp.service('FrameService',function (MatService) {
   this.text = '';
 
   this.start = function(size, text) {
@@ -75,11 +75,19 @@ CreateApp.service('FrameService',function () {
       return 'black';
   };
 
+  this._matting = function() {
+    var mat = MatService.matingType;
+    if (mat == 'Black')
+      return '_black';
+    else
+      return '';
+  };
+
   this._setFrameUrl = function(size) {
     if (this._type() == 'none') {
       $('#create_section').css('background-image', '');
     } else {
-      var url = this._baseUrl + this._type() + '_'+ size +'.png';
+      var url = this._baseUrl + this._type() + '_'+ size + this._matting() + '.png';
       $('#create_section').css('background-image', 'url('+ url +')');
     }
   };

@@ -11,7 +11,6 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.product = ProductService;
   $scope.library = Library;
   $scope.photoSize = '4x6'
-  $scope.matingType = 'White'
 
   /*
   * WORD
@@ -37,6 +36,14 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   		});
   	}
   }, true);
+
+  /*
+  * MATING
+  */
+  $scope.$watch("matService.matingType", function(newValue, oldValue) {
+    if (newValue != oldValue)
+      $scope.frameService.update($scope.word.length);
+  });
 
   /*
   * THEME
