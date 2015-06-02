@@ -1,5 +1,5 @@
 CreateApp.service('ThemeService', function ($http, SymbolChecker) {
-	this.selectedTheme = 'default';
+	this.selectedTheme = 'architecture';
 	this.findThemeCode = function (theme, character) {
 		var character = character.toUpperCase();
 		if (SymbolChecker.isSymbol(character)) {
