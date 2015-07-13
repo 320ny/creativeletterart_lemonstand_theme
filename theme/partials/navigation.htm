@@ -1,13 +1,13 @@
 <nav class="navigation">
     <div class="container">
         <div class="row">
-            <div class="span8">
+            <div class="span9">
                 <a href="#" class="main-menu-button">Navigation</a>
                 <!-- Begin Menu Container -->
                 <div class="megamenu_container">
                     <div class="menu-main-navigation-container">
                         <ul id="menu-main-navigation" class="main-menu">
-                            <li class="{{ active_page == 'home' ? 'active' : null }} menu-item-home menu-item-has-children megamenu-parent"><a href="{{ site_url('/') }}">Home</a></li>
+                            <li class="menu-item-home menu-item-has-children megamenu-parent"><a class="{{ page_code() == 'home' ? 'active' : null }}" href="{{ site_url('/') }}">Home</a></li>
                             <!--<li class="menu-item-has-children"><a href="{{ site_url('shop') }}">Shop</a>
                                 {% if categories.count %}
                                 {% tree categories %}
@@ -24,15 +24,16 @@
                             </li>
                             -->
 
-                            <li class="{{ active_page == 'create' ? 'active' : null }}"><a href="{{ site_url('create') }}">Create</a></li>
+                            <li><a class="{{ page_code() == 'create' ? 'active' : null }}" href="{{ site_url('create') }}">Create Your Own</a></li>
                             {% if categories.count %}
                             {% tree categories %}
-                              {% for category in tree.items %}
-                                <li class="menu-item-has-children"><a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a>
+                              {% for cat in tree.items %}
+                                <li class="menu-item-has-children">
+                                    <a class="{{ category.fullUrlName == cat.fullUrlName ? 'active' : null }}" href="/category/{{ cat.fullUrlName }}">{{ cat.name }}</a>
 
-                                {% if category.children.count %}
+                                {% if cat.children.count %}
                                   <ul class="sub-menu">
-                                      {% for child in category.children %}
+                                      {% for child in cat.children %}
                                         <li>
                                             <a href="/category/{{ child.fullUrlName }}">{{ child.name }}</a>
                                         </li>
@@ -44,14 +45,14 @@
                             {% endtree %}
                             {% endif %}
 
-                            <li class="{{ active_page == 'about-us' ? 'active' : null }}"><a href="{{ site_url('about-us') }}">About</a></li>
-                            <li class="{{ active_page == 'contact-us' ? 'active' : null }}"><a href="{{ site_url('contact-us') }}">Contact Us</a></li>
+                            <li><a class="{{ page_code() == 'about-us' ? 'active' : null }}"href="{{ site_url('about-us') }}">About</a></li>
+                            <li><a class="{{ page_code() == 'contact-us' ? 'active' : null }}" href="{{ site_url('contact-us') }}">Contact Us</a></li>
 
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="span4 visible-desktop">
+            <div class="span3 visible-desktop">
                 {{ code_block('breadcrumbs') }}
             </div>
         </div>

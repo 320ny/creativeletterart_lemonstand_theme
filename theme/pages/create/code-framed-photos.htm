@@ -6,10 +6,14 @@
       <div id="create_section">
         <div id="create-mating">
           <div id="create">
+            <span class="top-left personalized" ng-if="false && personalized.topLeft">{{personalized.topLeft}}</span>
+            <span class="top-center personalized" ng-if="false && personalized.topCenter">{{personalized.topCenter}}</span>
             <a ng-cloak ng-repeat="character in characters" ng-click="character.modal('open')" href="">
               <img ng-if="!character.isSpace()" ng-src='{{character.image_url()}}' width='80'/>
               <img ng-if="character.isSpace()" src='https://app.creativeletterart.net/api/letter/Space' width='80'>
             </a>
+            <span class="bottom-center personalized" ng-if="false && personalized.bottomCenter">{{personalized.bottomCenter}}</span>
+            <span class="bottom-right personalized" ng-if="false && personalized.bottomRight">{{personalized.bottomRight}}</span>
           </div>
           <div id="letter_links">
             <a ng-cloak ng-repeat-start="character in characters" ng-hide="character.isSpace()" ng-click="character.modal('open')" href="">change letter</a>
@@ -19,4 +23,37 @@
       </div>
     </div>
   </div>
+  
 {% endraw %}
+
+<style>
+    @font-face {
+        font-family: 'apple_chancerychancery';
+        src: url('{{ 'mix/apple_chancery-webfont.eot' |theme_resource }}');
+        src: url('{{ 'mix/apple_chancery-webfont.eot?#iefix' |theme_resource }}') format('embedded-opentype'),
+             url('{{ 'mix/apple_chancery-webfont.woff' |theme_resource }}') format('woff'),
+             url('{{ 'mix/apple_chancery-webfont.ttf' |theme_resource }}') format('truetype'),
+             url('{{ 'mix/apple_chancery-webfont.svg#apple_chancerychancery' |theme_resource }}') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    #create .top-left {
+        top: -35px;
+    }
+    #create .top-center {
+        top: -35px;
+        left: 500px;
+    }
+    #create .bottom-center {
+        top: 150px;
+        left: 500px;
+    }
+    #create .bottom-right {
+        top: 150px;
+        left: 700px;
+    }
+    #create .personalized {
+        position: absolute;
+        font-family: apple_chancerychancery;
+    }
+</style>

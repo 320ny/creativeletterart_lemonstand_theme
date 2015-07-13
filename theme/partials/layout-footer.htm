@@ -52,6 +52,9 @@
                     <h6>Shop</h6>
                     {% tree categories %}
                     <ul class="links">
+                        <li>
+                            <a href="/create">Create Your Own</a>
+                        </li>
                         {% for category in tree.items %}
                         <li>
                             <a href="/category/{{ category.fullUrlName }}">{{ category.name }}</a>
@@ -69,7 +72,19 @@
                     <!-- additional card images available in resource images folder -->
                     <img src="{{ 'images/visa.png'|theme_resource }}" alt="We accept all major credit cards" />
                     <img src="{{ 'images/mastercard.png'|theme_resource }}" alt="We accept all major credit cards" />
-                    <img src="{{ 'images/paypal.png'|theme_resource }}" alt="We accept all major credit cards" />
+                    <img src="{{ 'images/amex.png'|theme_resource }}" alt="We accept all major credit cards" />
+                </div>
+                <!-- (c) 2005, 2015. Authorize.Net is a registered trademark of CyberSource Corporation --> 
+                <div class="AuthorizeNetSeal row security-seal">
+                    <script type="text/javascript" language="javascript">var ANS_customer_id="59b85f6c-bba0-4845-b831-7518476de7bb";</script>
+                    <script type="text/javascript" language="javascript" src="//verify.authorize.net/anetseal/seal.js" ></script> 
+                </div>
+                <div class="row span2 security-seal">
+                    <!-- PayPal Logo -->
+                    <a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;">
+                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_74x46.jpg" alt="PayPal Logo">
+                    </a>
+                    <!-- PayPal Logo -->
                 </div>
                 <!-- End class="confidence" -->
             </div>
@@ -154,4 +169,16 @@
         </div>
     </div>
 </div>
+
+<style>
+    .security-seal img{
+        padding-top:20px;
+    }
+    .AuthorizeNetSeal img {
+        padding-left: 55px;
+    }
+    #AuthorizeNetText {
+        padding-left: 0px;
+    }
+</style>
 <!-- End id="newsletter_subscribe" -->

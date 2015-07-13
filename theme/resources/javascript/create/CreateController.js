@@ -11,7 +11,10 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
   $scope.product = ProductService;
   $scope.library = Library;
   $scope.photoSize = '4x6'
-
+  
+  $scope.personalized = {topCenter: '', topLeft: '', bottomCenter: '', bottomRight: '', additional: ''};
+  $scope.personalization = '';
+  
   /*
   * WORD
   */
@@ -26,6 +29,26 @@ CreateApp.controller('CreateController', function($scope, $location, Character, 
     }
   }, true);
 
+  $scope.$watch("personalized", function(newValue, oldValue) {
+    if (newValue != oldValue) {
+        $scope.updatePersonilization();
+    }
+  }, true);
+  
+  $scope.updatePersonilization = function() {
+      $scope.personalization = "";
+      if ($scope.personalized.topLeft)
+        $scope.personalization += 'Top Left "'+ $scope.personalized.topLeft +'" ';
+      if ($scope.personalized.topCenter)
+        $scope.personalization += 'Top Center "'+ $scope.personalized.topCenter +'" ';
+      if ($scope.personalized.bottomCenter)
+        $scope.personalization += 'Bottom Center "'+ $scope.personalized.bottomCenter +'" ';
+      if ($scope.personalized.bottomRight)
+        $scope.personalization += 'Bottom Right "'+ $scope.personalized.bottomRight +'" ';
+      if ($scope.personalized.additional)
+        $scope.personalization += 'Additional "'+ $scope.personalized.additional +'" ';
+  };
+  
   /*
   * PHOTO
   */

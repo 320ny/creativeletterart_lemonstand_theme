@@ -45,8 +45,7 @@ url: /create
           </div>
         </button>
         
-
-        <textarea class="hidden" ng-model="personalizedMessage" name="personalized_message"></textarea>
+        <textarea class="hidden" ng-model="personalization" name="personalization"></textarea>
 
       {{ close_form() }}
     </div>
@@ -69,10 +68,51 @@ url: /create
   {{ code_block('modals') }}
   
   <div class="row">
-    <div class="span4 offset4">
+    <div class="span8 offset2">
         <br>
-        <p>Enter any personalization you want included with your sign</p>
-        <textarea ng-model="personalizedMessage" name="personalized_message"></textarea>
+        <div class="row">
+          <div class="offset2">
+              <p><strong>Enter any personalization you want included with your sign</strong></p>
+          </div>
+        </div>
+        <div class="row personalized-inputs">
+            <div class="span2">
+                <label for="personalized_top_left">Top Left</label>
+            </div>
+            <div class="span2">
+                <label for="personalized_top_center">Top Center</label>
+            </div>
+            <div class="span2">
+                <label for="personalized_bottom_center">Bottom Center</label>
+            </div>
+            <div class="span2">
+                <label for="personalized_bottom_right">Bottom Right</label>
+            </div>
+        </div>
+        <div class="row personalized-inputs">
+            <div class="span2">
+                <input class="input-medium" ng-model="personalized.topLeft" type="text" id="personalized_top_left">
+            </div>
+            <div class="span2">
+                <input class="input-medium" ng-model="personalized.topCenter" type="text" id="personalized_top_center">
+            </div>
+            <div class="span2">
+                <input class="input-medium" ng-model="personalized.bottomCenter" type="text" id="personalized_bottom_center">
+            </div>
+            <div class="span2">
+                <input class="input-medium" ng-model="personalized.bottomRight" type="text" id="personalized_bottom_right">
+            </div>
+        </div>
+        <div class="row personalized-inputs">
+            <div class="span4 offset3">
+                <br>
+                <br>
+                <p><strong>Additional Personalization</strong></p>
+            </div>
+            <div class="span4 offset2">
+                <textarea ng-model="personalized.additional" name="personalized_message"></textarea>
+            </div>
+        </div>
     </div>
   </div>
 
@@ -80,12 +120,3 @@ url: /create
 
   <div ng-repeat="character in characters" ng-show="character.modalState == 'open'" ng-click="character.modal('close')" class="modal-backdrop"></div>
 </div>
-
-<style>
-.span1-5 {
-  width: 130px;
-}
-button.add-to-cart {
-  margin-left: 40px;
-}
-</style>

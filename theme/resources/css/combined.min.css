@@ -145,3 +145,38 @@ a.add-to-cart:hover {
 .cart-items ul.options {
   clear: both;
 }
+
+/*
+******************************
+CUSTOM CSS - Ryan
+******************************
+*/
+.megamenu_container a.active {
+    font-weight: bold;
+    color: #e67e22;
+}
+button.add-to-cart {
+  margin-left: 40px;
+}
+.span1-5 {
+  width: 130px;
+}
+
+/* Personalized Inputs */
+.personalized-inputs label {
+  text-align: center;
+  font-size: medium;
+}
+.personalized-inputs input.input-medium {
+  border-color: #e67e22;
+  border-style: solid;
+  border-width: thin;
+  width: 156px;
+}
+.personalized-inputs textarea {
+  border-color: #e67e22;
+  border-style: solid;
+  border-width: thin;
+}
+
+
